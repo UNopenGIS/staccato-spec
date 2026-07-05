@@ -19,3 +19,4 @@ Suggested ADR template sections:
 
 - [0001-faceless-cartographer.md](0001-faceless-cartographer.md): Adopt Faceless Cartographer as baseline
 - [0002-staff-startup-catalog-contract.md](0002-staff-startup-catalog-contract.md): Enforce Staff startup catalog contract and ban hidden fallback
+- [0003-spa-endpoint-model.md](0003-spa-endpoint-model.md): Client-side SPA transition satisfies the Faceless Cartographer endpoint model (Proposed)
