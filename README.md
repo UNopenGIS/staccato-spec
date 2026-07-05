@@ -44,6 +44,17 @@ Key principles:
 
 Purpose: the Staccato architecture aims to provide reproducible, auditable map generation while reducing the risk of accidental leakage from URL sharing or server-side persistence.
 
+## Reference Implementations
+
+Working, publicly deployed reference implementations exist for two of the four roles:
+
+- **Library**: [`hfu/layers-martin`](https://github.com/hfu/layers-martin) — converts GSI's `layers.txt` into a Martin-compatible static TileJSON catalog (`/catalog` + `/{source_id}`), published via GitHub Pages. Curates ~12,600 raw candidate layers down to a usable ~1,861-entry catalog (suppressing satellite-snapshot noise, deduplicating repeated tile URLs), and extends TileJSON with a `legend_image_url` field. Design decisions are recorded as ADRs in its own `DECISIONS.md`.
+- **Cartographer**: [`hfu/faceless-cartographer`](https://github.com/hfu/faceless-cartographer) — a static single-page app (no server, no LLM this generation) deployed at <https://hfu.github.io/faceless-cartographer/>. Implements the faceless pattern (ADR 0001) as a client-side view transition rather than a literal `GET /` / `POST /` HTTP split, since no page ever actually reloads or changes URL; this is a deliberate, recorded deviation from the ADR's literal wording (see its `DECISIONS.md`), not a proposal to change the ADR's intent.
+
+Both are wired together end-to-end: a `Staff` system-prompt addendum lives in `layers-martin`'s `STAFF_PROMPT.md` (iterated against real enterprise-AI role-play), and `faceless-cartographer` fetches and displays it so a compatible `Staff` agent can be set up without leaving the page.
+
+A notable finding from combining a second, independently-operated Library (a live Martin server at `stars.optgeo.org`, publishing GSI's optimized vector-tile basemap) alongside `layers-martin` in one Map Intent: no catalog-aggregator component was needed. `catalog_context.active_catalogs` being an array already supports listing multiple, unrelated Library catalogs side by side, and `Cartographer` resolves and renders both without any merging step. See `UNopenGIS/7#936` and `#938` for the fuller writeup.
+
 ## Repository Guide — Quick Start
 
 - What to read first: `spec/architecture-principles.md`, `spec/map-intent-vnext.md`, `spec/catalog-integration.md`, then `spec/background.md` and `spec/usecase.md` for context and examples.
