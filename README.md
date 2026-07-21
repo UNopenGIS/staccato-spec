@@ -55,6 +55,8 @@ Both are wired together end-to-end: a `Staff` system-prompt addendum lives in `l
 
 A notable finding from combining a second, independently-operated Library (a live Martin server at `stars.optgeo.org`, publishing GSI's optimized vector-tile basemap) alongside `layers-martin` in one Map Intent: no catalog-aggregator component was needed. `catalog_context.active_catalogs` being an array already supports listing multiple, unrelated Library catalogs side by side, and `Cartographer` resolves and renders both without any merging step. See `UNopenGIS/7#936` and `#938` for the fuller writeup.
 
+That same `stars.optgeo.org` Martin server also publishes complete MapLibre styles (`GET /style/{style_id}`), not just tile sources — `faceless-cartographer` added `required_styles`/`optional_styles` (Map Intent fields referencing a whole published style rather than individual `source_id`s) to let a user ask for a complete, pre-designed thematic map (e.g. "show me the volcanic land condition map") without Staff having to reconstruct it from raw layers. [ADR 0007](spec/adr/0007-style-references.md) proposes formalizing this; two thematic-only styles (extracted from [`hfu/kitavolca`](https://github.com/hfu/kitavolca)) are live at `https://stars.optgeo.org/style/vlcm` and `/style/vbm` as concrete evidence.
+
 ## Repository Guide — Quick Start
 
 - What to read first: `spec/architecture-principles.md`, `spec/map-intent-vnext.md`, `spec/catalog-integration.md`, then `spec/background.md` and `spec/usecase.md` for context and examples.
