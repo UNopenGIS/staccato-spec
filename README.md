@@ -57,6 +57,12 @@ A notable finding from combining a second, independently-operated Library (a liv
 
 That same `stars.optgeo.org` Martin server also publishes complete MapLibre styles (`GET /style/{style_id}`), not just tile sources — `faceless-cartographer` added `required_styles`/`optional_styles` (Map Intent fields referencing a whole published style rather than individual `source_id`s) to let a user ask for a complete, pre-designed thematic map (e.g. "show me the volcanic land condition map") without Staff having to reconstruct it from raw layers. [ADR 0007](spec/adr/0007-style-references.md) proposes formalizing this; two thematic-only styles (extracted from [`hfu/kitavolca`](https://github.com/hfu/kitavolca)) are live at `https://stars.optgeo.org/style/vlcm` and `/style/vbm` as concrete evidence.
 
+## Related Work
+
+[`yuiseki/TRIDENT`](https://github.com/yuiseki/TRIDENT) is an earlier, independently-developed project in the same broad space — an AI assistant that turns natural-language requests into an interactive MapLibre GL JS map, backed by OpenStreetMap/Overpass data. It predates this repository by several years and was developed without knowledge of it (no shared code, terminology, or contributors between the two projects).
+
+Its architecture differs from Staccato's in ways that reflect a different operating context: TRIDENT runs as a single application with no enterprise/internet trust boundary, and its LLM layer generates Overpass QL queries directly rather than selecting `source_id`s from a pre-published catalog. Staccato's separation of `Staff`/`Cartographer` across a human-mediated handoff, and its insistence that Staff only select from catalog-resolved `source_id`s rather than generate identifiers itself, stem from the enterprise network-separation constraints in the CONOPS this repository originates from (see [Background](spec/background.md)) rather than from TRIDENT. It's referenced here as related prior art in the "AI + natural language + web map" space, not as a source this specification derives from.
+
 ## Repository Guide — Quick Start
 
 - What to read first: `spec/architecture-principles.md`, `spec/map-intent-vnext.md`, `spec/catalog-integration.md`, then `spec/background.md` and `spec/usecase.md` for context and examples.
