@@ -25,3 +25,4 @@ Suggested ADR template sections:
 - [0006-cartographer-faceless-vs-idempotent-modes.md](0006-cartographer-faceless-vs-idempotent-modes.md): Cartographer implementation patterns: faceless-by-default vs. idempotent modes (Proposed)
 - [0007-style-references.md](0007-style-references.md): Style references (`required_styles`/`optional_styles`) as an alternative to layer-level composition (Proposed)
 - [0008-basemap-selection.md](0008-basemap-selection.md): Explicit `basemap` field on Map Intent, reusing `StyleRef` (Proposed)
+- [0009-vocabulary-flexibility.md](0009-vocabulary-flexibility.md): Map Intent is the required baseline vocabulary, not the only one (Proposed)
