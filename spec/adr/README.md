@@ -26,3 +26,4 @@ Suggested ADR template sections:
 - [0007-style-references.md](0007-style-references.md): Style references (`required_styles`/`optional_styles`) as an alternative to layer-level composition (Proposed)
 - [0008-basemap-selection.md](0008-basemap-selection.md): Explicit `basemap` field on Map Intent, reusing `StyleRef` (Proposed)
 - [0009-vocabulary-flexibility.md](0009-vocabulary-flexibility.md): Map Intent is the required baseline vocabulary, not the only one (Proposed)
+- [0010-narrative-sequencing.md](0010-narrative-sequencing.md): Narrative sequencing as an ordered wrapper around independent Map Intents (Proposed)
